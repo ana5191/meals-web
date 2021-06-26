@@ -12,24 +12,22 @@ public class Ingredient {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, unique = true, length = 100) // vezi schema.sql
+	@Column(nullable = false, unique = true, length = 100)
 	private String name;
 
 	private String description;
 
-	@Column(name = "i_type") // vezi schema.sql
+	@Column(name = "i_type")
 	private String type;
 
-	@Column(name = "image_url") // vezi schema.sql
+	@Column(name = "image_url")
 	private String imageUrl;
 
-	// GENERATED: www.themealdb.com/images/ingredients/{name}-Small.png
-	@Column(name = "small_image_url") // vezi schema.sql
+
+	@Column(name = "small_image_url")
 	private String smallImageUrl;
 
-	/*
-	 * GETTERS & SETTERS
-	 */
+
 	public Long getId() {
 		return id;
 	}

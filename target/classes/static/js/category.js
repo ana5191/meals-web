@@ -16,14 +16,14 @@ const ingredientListContainer = document.getElementById('ingredient_list_contain
 /**
  * GET http://localhost:9090/categories
  */
-const loadCategoryList = function() {
+const loadCategoryList = function () {
     fetch(CATEGORY_LIST_URL)
         .then(res => res.json())
         .then(data => renderCategoryList(data))
         .catch(err => console.log("Error:", err));
 };
 
-const renderCategoryList = function(categoryList) {
+const renderCategoryList = function (categoryList) {
     let content = '';
     for (let i = 0; i < categoryList.length; i++) {
         const category = categoryList[i];
@@ -40,14 +40,14 @@ const renderCategoryList = function(categoryList) {
 /**
  * GET http://localhost:9090/meals/category?id={categoryId}
  */
-const loadMealsByCategory = function(categoryId, categoryName) {
+const loadMealsByCategory = function (categoryId, categoryName) {
     fetch(MEAL_LIST_BY_CATEGORY_URL + categoryId)
         .then(res => res.json())
         .then(data => renderMealList(data, categoryName))
         .catch(err => console.log("Error:", err));
 };
 
-const renderMealList = function(mealList, categoryName) {
+const renderMealList = function (mealList, categoryName) {
     currentCategoryNameContainer.innerHTML = categoryName;
 
     let content = '';
@@ -69,33 +69,11 @@ const renderMealList = function(mealList, categoryName) {
     mealListContainer.innerHTML = content;
 };
 
-// * GET http://localhost:9090/composition/meal?id=53049
-const loadComposition= function(mealId) {
-    fetch(COMPOSITION_LIST_URL + mealId)
-        .then(res => res.json())
-        .then(data => renderComposition(data))
-        .catch(err => console.log("Error:", err));
-};
-const renderComposition= function(meal_composition) {
-    let compositionList = `<ul>`;
 
-    console.log(meal_composition);
-    for(let i = 0; i < meal_composition.length; i++){
-        compositionList += `<li>${i.measure} x ${i.ingredient.name}</li>`;
-        console.log("i" + i);
-    }
-
-
-    compositionList += `</ul>`;
-
-    // meal_composition.forEach(elem => compositionList += `<li>${elem.measure} x ${elem.ingredient.name}</li>`);
-    // compositionList += `</ul>`;
-    ingredientListContainer.innerHTML=compositionList;
-}
 /**
  * GET http://localhost:9090/meals/{mealId}
  */
-const loadMeal = function(mealId) {
+const loadMeal = function (mealId) {
     fetch(MEAL_BY_ID + mealId)
         .then(res => res.json())
         .then(data => renderMeal(data))
@@ -103,24 +81,17 @@ const loadMeal = function(mealId) {
 };
 
 
-
-
-
-    const renderMeal = function(meal) {
+const renderMeal = function (meal) {
 
     document.getElementById("meal_img").src = meal.imageUrl;
-
-    document.getElementById("meal_title").innerHTML = meal.name ;
-    document.getElementById("meal_subtitle").innerHTML = meal.category.name + '  &nbsp;|&nbsp;   ' +meal.area.name + ' area';
-
-
+    document.getElementById("meal_title").innerHTML = meal.name;
+    document.getElementById("meal_subtitle").innerHTML = meal.category.name + '  &nbsp;|&nbsp;   ' + meal.area.name + ' area';
     document.getElementById("meal_instructions").innerHTML = meal.instructions;
-   // let compositionList = `<ul>`;
 
-  //  meal.compositions.forEach(elem=> compositionList += `<li>${elem.measure} x ${elem.ingredient.name}</li>`);
-   // compositionList += `</ul>`;
-   // document.getElementById("meal_composition").innerHTML=compositionList;
+    let compositionList = `<ul>`;
+    meal.compositions.forEach(elem => compositionList += `<li>${elem.measure} x ${elem.ingredient.name}</li>`);
+    compositionList += `</ul>`;
 
-
-            document.getElementById("meal_container").style.display = "block";
+    document.getElementById("meal_composition").innerHTML = compositionList;
+    document.getElementById("meal_container").style.display = "block";
 };

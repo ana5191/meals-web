@@ -12,12 +12,9 @@ public class Area {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, unique = true, length = 100) // vezi schema.sql
+	@Column(nullable = false, unique = true, length = 100)
 	private String name;
 
-	/*
-	 * GETTERS & SETTERS
-	 */
 	public Long getId() {
 		return id;
 	}

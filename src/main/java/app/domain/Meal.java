@@ -17,43 +17,40 @@ public class Meal {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, unique = true, length = 100) // vezi schema.sql
+	@Column(nullable = false, unique = true, length = 100)
 	private String name;
 
-	@ManyToOne(fetch = FetchType.LAZY) // @ManyToOne unidirectional
-	@JoinColumn(name = "category_id") // vezi schema.sql: FK MEAL.category_id --> PK CATEGORY.id
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category_id")
 	private Category category;
 
-	@ManyToOne(fetch = FetchType.LAZY) // @ManyToOne unidirectional
-	@JoinColumn(name = "area_id") // vezi schema.sql: FK MEAL.area_id --> PK AREA.id
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "area_id")
 	private Area area;
 
 	
-	@OneToMany(fetch = FetchType.EAGER) // @OneToMany unidirectional; join column (FK) este in celalata @Entity!
-	@JoinColumn(name = "meal_id") // vezi schema.sql: PK MEAL.id <-- FK MEAL_COMPOSITION.meal_id
-	private List<Composition> compositions; // IN GENERAL: Mai bine Set<T> decit List<T>;
-											// caz in care trebuie definite equals+hashCode in Composition!
+	@OneToMany(fetch = FetchType.EAGER)
+	@JoinColumn(name = "meal_id")
+	private List<Composition> compositions;
 
 	private String instructions;
 
-	@Column(name = "image_url") // vezi schema.sql
+	@Column(name = "image_url")
 	private String imageUrl;
 
-	// GENERATED: {image_url}/preview
-	@Column(name = "small_image_url") // vezi schema.sql
+
+	@Column(name = "small_image_url")
 	private String smallImageUrl;
 
-	@Column(name = "youtube_url") // vezi schema.sql
+	@Column(name = "youtube_url")
 	private String youtubeUrl;
 
-	@Column(name = "source_url") // vezi schema.sql
+	@Column(name = "source_url")
 	private String sourceUrl;
 
 	private String tags;
 
-	/*
-	 * GETTERS & SETTERS
-	 */
+
 	public Long getId() {
 		return id;
 	}

@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
         @Autowired
         CompositionRepository compositionRepository;
 
-        // e.g. {root}/meals/area?id=20
-        //	@GetMapping("area")
         @GetMapping("/meal")
         Iterable<CompositionSummary> getMealsByMealsId(@RequestParam(name="id") Long idmeal) {
             return compositionRepository.findByMealId(idmeal);

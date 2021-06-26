@@ -12,17 +12,14 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, unique = true, length = 100) // vezi schema.sql
+	@Column(nullable = false, unique = true, length = 100)
 	private String name;
 
 	private String description;
 
-	@Column(name = "image_url") // vezi schema.sql
+	@Column(name = "image_url")
 	private String imageUrl;
 
-	/*
-	 * GETTERS & SETTERS
-	 */
 	public Long getId() {
 		return id;
 	}
