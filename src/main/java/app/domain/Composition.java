@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-//import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "meal_composition" // vezi schema.sql
@@ -35,7 +34,7 @@ public class Composition {
 	@Column(name="meal_id")
      private Long mealId;
 
-	@Column(length = 100) // vezi schema.sql
+	@Column(length = 100)
 	private String measure;
 
 	/*
@@ -64,23 +63,4 @@ public class Composition {
 	public void setMeasure(String measure) {
 		this.measure = measure;
 	}
-
-	/*
-	 * equals & hashCode -- doar cind folosim clasa asta in Set; sau key in Map
-	 */
-/*
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null || getClass() != obj.getClass())
-			return false;
-		Composition other = (Composition) obj;
-		return Objects.equals(id, other.id);
-	}
-*/
 }
